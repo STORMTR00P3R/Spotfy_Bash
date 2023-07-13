@@ -1,0 +1,34 @@
+async function getArtistDetails(artistID) {
+  const accessToken = "BQAX1hQ4OZ2RsTHK7bd3ygMhBeyHB7XxJI-RY2-lkoZ_AqofwLDny7_V3n2XfpvxYHKzpH6D4MKZ_dUyNEqNuA7P_jjjNF8gbdoS25PR8MfGmE7Qaqk";
+                             // https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks
+  const response = await fetch(`https://api.spotify.com/v1/artists/${artistID}`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
+  if(!response.ok) {
+    throw new Error('Failed to fetch artist details.');
+  }
+
+  const data = await response.json();
+
+  console.log(data);
+  
+  // const artistName = data.tracks.artists;
+  // const artistImage = data.images.length > 0 ? data.images[0].url : null
+
+  // return {name: artistName, image: artistImage, data: data}
+  // return {name: artistName, data: data}
+}
+
+getArtistDetails("06HL4z0CvFAxyc27GXpf02")
+  .then(artist => {
+    // console.log("Artist name:", artist.name);
+    // // console.log("Artist image:", artist.image);
+    // console.log("Response data:", artist.data);
+    console.log("Response data:", data);
+  })
+  .catch(error => {
+    console.error("Error:", error.message);
+  });
