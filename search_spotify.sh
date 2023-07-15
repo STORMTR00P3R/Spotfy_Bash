@@ -2,7 +2,6 @@
 
 # Set color variables
 GREEN='\033[0;32m'
-RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # if access token is empty, get a new one using a function
@@ -20,13 +19,11 @@ artist_name_result=$(echo "$search_result" | jq -r '.artists.items[0].name')
 artist_id=$(echo "$search_result" | jq -r '.artists.items[0].id')
 url=$(echo "$search_result" | jq -r '.artists.items[0].external_urls.spotify')
 genres=$(echo "$search_result" | jq -r '.artists.items[0].genres')
-follower_count=$(echo "$search_result" | jq -r '.artists.items[0].followers.total')
 
 echo -e "${GREEN}Artist Name:${NC} $artist_name_result" 
 echo -e "${GREEN}Artist ID:${NC} $artist_id" 
 echo -e "${GREEN}URL:${NC} $url"
 echo -e "${GREEN}Genre:${NC} $genres"
-echo -e "${GREEN}Followers:${NC} $follower_count"
 echo "-------------------------"
 
 top_tracks_result=$(curl -s --request GET \
